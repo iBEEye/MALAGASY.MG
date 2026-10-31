@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MALAGASY.MG - Fampahalalana Olom-pirenena</title>
+  <!-- FAMPIDIRANA NY PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e40af">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- LOHA-PEJY -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <div>
+        <h1 class="text-base font-bold text-gray-900 leading-none">MALAGASY.MG</h1>
+        <span class="text-[11px] text-gray-500">Sehatra tsy mitongilana</span>
+      </div>
+      
+      <div class="flex items-center space-x-1.5">
+        <a href="fanabeazana.html" class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold px-2 py-1.5 rounded-lg flex items-center space-x-1 hover:bg-emerald-100">
+          <span>📖 Lalàna</span>
+        </a>
+        <a href="ampitahao.html" class="text-xs bg-blue-50 text-blue-700 border border-blue-200 font-semibold px-2 py-1.5 rounded-lg flex items-center space-x-1 hover:bg-blue-100">
+          <span>⚖️ Ampitahao</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- VONTOM-PEJY -->
+  <main class="flex-grow max-w-md mx-auto w-full px-4 py-4 space-y-3">
+    
+    <!-- Fikarohana -->
+    <div>
+      <input 
+        type="search" 
+        id="fikarohana" 
+        placeholder="Tadiavo ny anarana na antoko na tanàna..." 
+        class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+    </div>
+
+    <!-- BOKOTRA SIVANA (Filohampirenena, Solombavambahoaka, Ben'ny tanàna) -->
+    <div class="flex space-x-2 overflow-x-auto pb-1 text-xs">
+      <button 
+        data-sokajy="Filohampirenena" 
+        class="bokotra-sivana px-3 py-1.5 bg-blue-600 text-white font-medium rounded-full whitespace-nowrap shadow-sm">
+        Filohampirenena
+      </button>
+      <button 
+        data-sokajy="Solombavambahoaka" 
+        class="bokotra-sivana px-3 py-1.5 bg-white text-gray-700 border border-gray-300 rounded-full whitespace-nowrap">
+        Solombavambahoaka
+      </button>
+      <button 
+        data-sokajy="Ben'ny tanàna" 
+        class="bokotra-sivana px-3 py-1.5 bg-white text-gray-700 border border-gray-300 rounded-full whitespace-nowrap">
+        Ben'ny tanàna
+      </button>
+    </div>
+
+    <!-- Fampahafantarana -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-2.5 rounded text-[11px] text-blue-900 leading-relaxed">
+      Fanamarihana: Voalahatra araka ny <strong>abidy</strong> ny kandidà mba hisorohana ny fiangarana.
+    </div>
+
+    <!-- Lisitra -->
+    <div id="lisitra-kandida" class="space-y-2">
+      <!-- Ampidirin'ny JavaScript eto -->
+    </div>
+
+  </main>
+
+  <!-- FE-PEJY -->
+  <footer class="bg-white border-t border-gray-200 py-3 mt-auto">
+    <div class="max-w-md mx-auto px-4 text-center text-[11px] text-gray-400">
+      MALAGASY.MG • Tsy miankina amin'antoko politika
+    </div>
+  </footer>
+
+  <!-- FAMPIDIRANA NY ANGONA EFATRA -->
+  <script src="data_taloha.js"></script>
+  <script src="data_vaovao.js"></script>
+  <script src="data_bennytanana.js"></script>
+  <script src="data_solombavambahoaka.js"></script>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const lisitraContainer = document.getElementById("lisitra-kandida");
+    const fikarohanaInput = document.getElementById("fikarohana");
+    const bokotraSivanaRehetra = document.querySelectorAll(".bokotra-sivana");
+
+    // Fampiraisana ny angona efatra
+    const kandidaData = [
+      ...(typeof kandidaTaloha !== 'undefined' ? kandidaTaloha : []),
+      ...(typeof kandidaVaovao !== 'undefined' ? kandidaVaovao : []),
+      ...(typeof kandidaBennyTanana !== 'undefined' ? kandidaBennyTanana : []),
+      ...(typeof kandidaSolombavambahoaka !== 'undefined' ? kandidaSolombavambahoaka : [])
+    ];
+
+    const kandidaRehetra = kandidaData.sort((a, b) => a.anarana.localeCompare(b.anarana));
+
+    let sokajyVoafidy = "Filohampirenena";
+    let tenyFikarohana = "";
+
+    function manadioSokajy(soratra) {
+      return (soratra || "").toLowerCase().replace(/[-\s']/g, "");
+    }
+
+    function asehoNyKandida() {
+      lisitraContainer.innerHTML = "";
+
+      const lisitraVoasivana = kandidaRehetra.filter(k => {
+        const sokajyMifanaraka = manadioSokajy(k.sokajy) === manadioSokajy(sokajyVoafidy);
+
+        const fitambarany = `${k.anarana} ${k.fanampin_anarana} ${k.antoko} ${k.sokajy} ${k.kaominina || ''} ${(k.taona_nilatsahana || []).join(" ")}`.toLowerCase();
+        const tenyMifanaraka = fitambarany.includes(tenyFikarohana);
+
+        return sokajyMifanaraka && tenyMifanaraka;
+      });
+
+      if (lisitraVoasivana.length === 0) {
+        lisitraContainer.innerHTML = `
+          <div class="p-6 text-center text-xs text-gray-500 bg-white rounded-xl border border-gray-200">
+            Tsy mbola misy kandidà voarakitra amin'ny sokajy <strong>« ${sokajyVoafidy} »</strong> na tsy mifanaraka amin'ny fikarohana.
+          </div>
+        `;
+        return;
+      }
+
+      lisitraVoasivana.forEach(k => {
+        const karatra = document.createElement("article");
+        karatra.className = "bg-white border border-gray-200 rounded-lg p-3 shadow-sm flex items-center space-x-3";
+        karatra.innerHTML = `
+          <div class="w-11 h-11 rounded-full overflow-hidden bg-blue-100 flex-shrink-0 flex items-center justify-center border border-gray-200 shadow-inner">
+            <img 
+              src="${k.sary_url}" 
+              alt="${k.anarana}" 
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div style="display:none;" class="w-full h-full text-blue-700 font-bold text-xs items-center justify-center">
+              ${k.anarana.charAt(0)}${k.fanampin_anarana.charAt(0)}
+            </div>
+          </div>
+          
+          <div class="flex-grow min-w-0">
+            <div class="flex items-center space-x-1">
+              <span class="text-[10px] font-bold text-blue-600 uppercase tracking-tight">${k.sokajy}</span>
+              ${k.kaominina ? `<span class="text-gray-300 text-xs">•</span><span class="text-[10px] text-emerald-700 font-bold truncate">${k.kaominina}</span>` : ''}
+              <span class="text-gray-300 text-xs">•</span>
+              <span class="text-[11px] text-gray-500 truncate">${k.antoko}</span>
+            </div>
+            <h2 class="text-xs font-bold text-gray-900 truncate">${k.anarana} ${k.fanampin_anarana}</h2>
+            <p class="text-[11px] text-gray-500 truncate">${k.fari_pahaizana}</p>
+          </div>
+
+          <a href="profil.html?id=${k.id}" class="text-xs bg-gray-50 border border-gray-200 text-blue-600 px-2.5 py-1.5 rounded font-medium flex-shrink-0 hover:bg-blue-50">
+            Hijery &rarr;
+          </a>
+        `;
+        lisitraContainer.appendChild(karatra);
+      });
+    }
+
+    fikarohanaInput.addEventListener("input", (e) => {
+      tenyFikarohana = e.target.value.toLowerCase();
+      asehoNyKandida();
+    });
+
+    bokotraSivanaRehetra.forEach(bokotra => {
+      bokotra.addEventListener("click", () => {
+        bokotraSivanaRehetra.forEach(b => {
+          b.className = "bokotra-sivana px-3 py-1.5 bg-white text-gray-700 border border-gray-300 rounded-full whitespace-nowrap text-xs";
+        });
+
+        bokotra.className = "bokotra-sivana px-3 py-1.5 bg-blue-600 text-white font-medium rounded-full whitespace-nowrap text-xs shadow-sm";
+
+        sokajyVoafidy = bokotra.getAttribute("data-sokajy");
+        asehoNyKandida();
+      });
+    });
+
+    asehoNyKandida();
+  </script>
+<!-- FAMPANDRAISANA NY SERVICE WORKER (PWA) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(() => console.log('✅ PWA MALAGASY.MG vonona!'))
+          .catch((err) => console.log('Fampitandremana PWA:', err));
+      });
+    }
+  </script>
+</body>

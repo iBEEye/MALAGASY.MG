@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mombamomba ny Kandidà | MALAGASY.MG</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- LOHA-PEJY -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="text-blue-600 font-bold text-sm flex items-center hover:underline">
+        &larr; Miverina
+      </a>
+      <h1 class="text-sm font-bold text-gray-800 truncate">Mombamomba ny Kandidà</h1>
+      <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">MALAGASY.MG</span>
+    </div>
+  </header>
+
+  <!-- VONTOM-PEJY -->
+  <main class="flex-grow max-w-md mx-auto w-full px-4 py-4">
+    <div id="profil-container" class="space-y-4">
+      <p class="text-center text-xs text-gray-400 py-6">Eo am-pakana ny mombamomba azy...</p>
+    </div>
+  </main>
+
+  <!-- FE-PEJY -->
+  <footer class="bg-white border-t border-gray-200 py-3 mt-auto">
+    <div class="max-w-md mx-auto px-4 text-center text-[11px] text-gray-400">
+      MALAGASY.MG • Sehatra tsy mitongilana mpanamarina vaovao
+    </div>
+  </footer>
+
+  <!-- FAMPIDIRANA NY ANGONA EFATRA -->
+  <script src="data_taloha.js"></script>
+  <script src="data_vaovao.js"></script>
+  <script src="data_bennytanana.js"></script>
+  <script src="data_solombavambahoaka.js"></script>
+
+  <!-- SCRIPT MITANTANA NY PEJY -->
+  <script>
+    const container = document.getElementById("profil-container");
+    const urlParams = new URLSearchParams(window.location.search);
+    const kandidaId = urlParams.get("id");
+
+    // Fampiraisana ny angona efatra
+    const kandidaData = [
+      ...(typeof kandidaTaloha !== 'undefined' ? kandidaTaloha : []),
+      ...(typeof kandidaVaovao !== 'undefined' ? kandidaVaovao : []),
+      ...(typeof kandidaBennyTanana !== 'undefined' ? kandidaBennyTanana : []),
+      ...(typeof kandidaSolombavambahoaka !== 'undefined' ? kandidaSolombavambahoaka : [])
+    ];
+
+    const kandida = kandidaData.find(k => k.id === kandidaId);
+
+    if (!kandida) {
+      container.innerHTML = `
+        <div class="bg-white p-6 rounded-lg text-center space-y-2 border border-gray-200">
+          <p class="text-sm font-bold text-red-500">Tsy hita ity kandidà ity.</p>
+          <a href="index.html" class="inline-block text-xs text-blue-600 underline">Miverina amin'ny lisitra</a>
+        </div>
+      `;
+    } else {
+      // 1. KAJY NY SALANISA ANKAPOBENY
+      const sehatraLisitra = kandida.tombana_sehatra || [];
+      let salanisa = 0;
+      if (sehatraLisitra.length > 0) {
+        const total = sehatraLisitra.reduce((fitambarany, s) => fitambarany + s.taha, 0);
+        salanisa = Math.round(total / sehatraLisitra.length);
+      }
+
+      let salanisaLoko = "bg-emerald-600";
+      if (salanisa < 40) salanisaLoko = "bg-red-500";
+      else if (salanisa < 60) salanisaLoko = "bg-amber-500";
+
+      // 2. FANDAHARAN'ASA FOTOTRA
+      const fandaharanAsaHTML = (kandida.fandaharan_asa_fototra || [])
+        .map(tolo => `<li class="text-xs text-gray-700 leading-relaxed">${tolo}</li>`)
+        .join("");
+
+      // 3. BLOC LOKALOKA VS ZAVABITA
+      const fampanantenanaHTML = (kandida.fampanantenana_vs_zavabita || [])
+        .map(item => `
+          <div class="bg-white border border-gray-200 rounded-xl p-3 space-y-2.5 shadow-sm">
+            <div class="flex items-start justify-between">
+              <div class="space-y-0.5 pr-2">
+                <span class="text-[10px] font-bold text-blue-700 uppercase tracking-wider block">📢 Lokaloka tamin'ny propagande:</span>
+                <p class="text-xs text-gray-800 font-semibold leading-snug">${item.fampanantenana}</p>
+              </div>
+              <span class="text-xs font-black px-2 py-1 rounded bg-blue-50 text-blue-700 flex-shrink-0 border border-blue-200">
+                ${item.taha}%
+              </span>
+            </div>
+
+            <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+              <div class="${item.loko || 'bg-blue-600'} h-1.5 rounded-full" style="width: ${item.taha}%"></div>
+            </div>
+
+            <div class="bg-emerald-50/70 border border-emerald-200 rounded-lg p-2 space-y-1">
+              <div class="flex items-center space-x-1">
+                <span class="text-[10px] font-extrabold bg-emerald-600 text-white px-1.5 py-0.5 rounded flex items-center">
+                  ✅ Zavabita
+                </span>
+                <span class="text-[10px] text-emerald-800 font-semibold">Tena nivaingana:</span>
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed">${item.zavabita}</p>
+            </div>
+          </div>
+        `)
+        .join("");
+
+      // 4. GRAPHE NY SEHATRA 8
+      const grapheHTML = sehatraLisitra
+        .map(item => `
+          <div class="space-y-1">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-semibold text-gray-700">${item.sehatra}</span>
+              <span class="font-bold text-gray-900">${item.taha}%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div class="${item.loko} h-2 rounded-full" style="width: ${item.taha}%"></div>
+            </div>
+            <p class="text-[10px] text-gray-500">${item.fanazavana}</p>
+          </div>
+        `).join("");
+
+      // 5. FANAMARINAM-BAOVAO GENERATOR
+      function mamoronaFactCards(lisitra) {
+        if (!lisitra || lisitra.length === 0) {
+          return `
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-center space-y-1">
+              <p class="text-xs text-amber-900 font-medium">Tsy misy fanadihadiana mifanaraka amin'ny fanontanianao.</p>
+              <p class="text-[10px] text-amber-700">Andramo amin'ny teny tsotsotra kokoa.</p>
+            </div>
+          `;
+        }
+
+        return lisitra.map(fb => {
+          let badgeLoko = "bg-emerald-100 text-emerald-800 border-emerald-300";
+          let didySoratra = "✅ MARINA";
+
+          if (fb.didim_pitsarana === "DISO") {
+            badgeLoko = "bg-red-100 text-red-800 border-red-300";
+            didySoratra = "❌ VAOVAO DISO";
+          } else if (fb.didim_pitsarana === "MAMPISALASALA") {
+            badgeLoko = "bg-amber-100 text-amber-800 border-amber-300";
+            didySoratra = "⚠️ MAMPISALASALA / TSY AMPY POROFO";
+          }
+
+          const hafatraWhatsApp = encodeURIComponent(`[Fanamarinam-baovao MALAGASY.MG]\nFilazana: « ${fb.filazana} »\nDidy: ${didySoratra}\nFanazavana: ${fb.fanazavana}\nLoharano: ${fb.rohy_porofo}`);
+          const rohyWhatsApp = `https://api.whatsapp.com/send?text=${hafatraWhatsApp}`;
+
+          return `
+            <div class="fact-card p-3 bg-white border border-gray-200 rounded-xl space-y-2 text-xs shadow-sm">
+              <div class="flex justify-between items-start gap-2">
+                <span class="text-[10px] font-black px-2 py-0.5 rounded border ${badgeLoko} flex-shrink-0">
+                  ${didySoratra}
+                </span>
+                <span class="text-[10px] text-gray-400 font-medium text-right">${fb.mpanamarina}</span>
+              </div>
+              <p class="font-bold text-gray-900 italic text-xs pt-1 leading-snug">« ${fb.filazana} »</p>
+              <p class="text-xs text-gray-600 leading-relaxed">${fb.fanazavana}</p>
+              
+              <div class="pt-2 border-t border-gray-100 flex justify-between items-center text-[10px]">
+                <a href="${fb.rohy_porofo}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline font-semibold hover:text-blue-800">
+                  Rohy ofisialy &rarr;
+                </a>
+                <a href="${rohyWhatsApp}" target="_blank" class="text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200 font-bold flex items-center space-x-1 hover:bg-emerald-100">
+                  <span>📲 Zarao amin'ny WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const taonaSoratra = (kandida.taona_nilatsahana || []).join(", ");
+
+      // 6. FAMOAHANA NY PEJY
+      container.innerHTML = `
+        <!-- Karatra misy Sary -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 text-center shadow-sm flex flex-col items-center space-y-2">
+          <div class="w-20 h-20 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center border-2 border-white shadow">
+            <img 
+              src="${kandida.sary_url}" 
+              alt="${kandida.anarana}" 
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div style="display:none;" class="w-full h-full text-blue-700 font-bold text-base items-center justify-center">
+              ${kandida.anarana.charAt(0)}${kandida.fanampin_anarana.charAt(0)}
+            </div>
+          </div>
+          <div>
+            <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase mb-1">
+              ${kandida.sokajy} ${kandida.kaominina ? '• ' + kandida.kaominina : ''} ${taonaSoratra ? '(' + taonaSoratra + ')' : ''}
+            </span>
+            <h2 class="text-lg font-bold text-gray-900">${kandida.anarana} ${kandida.fanampin_anarana}</h2>
+            <p class="text-xs text-gray-500">${kandida.antoko}</p>
+          </div>
+        </div>
+
+        <!-- Mombamomba fototra -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3">
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Mombamomba fototra</h3>
+          <div class="grid grid-cols-2 gap-2 text-xs border-t border-gray-100 pt-2">
+            <div>
+              <span class="text-gray-400 block text-[10px]">Fari-pahaizana:</span>
+              <span class="font-medium text-gray-800">${kandida.fari_pahaizana}</span>
+            </div>
+            <div>
+              <span class="text-gray-400 block text-[10px]">Fiaviana:</span>
+              <span class="font-medium text-gray-800">${kandida.fiaviana}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOMBANA ARA-TSEHATRA -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Tombana Ara-tsehatra (Bilan)</h3>
+            <span class="text-[9px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">8 Sehatra fototra</span>
+          </div>
+
+          <div class="space-y-3 pt-1">
+            ${grapheHTML}
+          </div>
+
+          <!-- SALANISA ANKAPOBENY -->
+          <div class="mt-4 pt-3 border-t border-gray-200 flex items-center justify-between bg-blue-50/50 p-2.5 rounded-lg">
+            <div>
+              <span class="text-xs font-bold text-gray-900 block">Salanisan'ny Zavabita Ankapobeny</span>
+              <span class="text-[10px] text-gray-500">Kajy salanisa avy amin'ireo sehatra 8</span>
+            </div>
+            <div class="${salanisaLoko} text-sm font-extrabold px-3 py-1.5 rounded-lg shadow-sm">
+              ${salanisa}%
+            </div>
+          </div>
+
+          <p class="text-[9px] text-gray-400 italic text-center pt-1">
+            Loharano: Tatitra ofisialy, Gazetim-panjakana, ary Tahirin-kevitra ara-tantara.
+          </p>
+        </div>
+
+        <!-- FANAMARINAM-BAOVAO -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">🔍 Fanamarinam-baovao (Fact-Checking)</h3>
+            <span class="text-[9px] text-gray-400">MaLiNa • SIOKA</span>
+          </div>
+
+          <div>
+            <label for="karoka-fanontaniana" class="block text-[11px] font-semibold text-gray-700 mb-1">
+              Manontania na karohy ny tsaho reko:
+            </label>
+            <input 
+              type="search" 
+              id="karoka-fanontaniana" 
+              placeholder="Ohatra: fako, lalan-kely, volamena, tany..." 
+              class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              oninput="mikorokaTsahoFeno(this.value)"
+            >
+          </div>
+
+          <div id="valin-tsaho-container" class="space-y-2.5 pt-1">
+            ${mamoronaFactCards(kandida.fanamarinam_baovao)}
+          </div>
+
+          <div class="pt-2 border-t border-gray-100 text-center">
+            <p class="text-[11px] text-gray-500 mb-1.5">Tsy mbola voavaly ny fanontanianao?</p>
+            <a 
+              id="whatsapp-fanontaniana"
+              href="https://api.whatsapp.com/send?text=${encodeURIComponent('Miarahaba MALAGASY.MG, mba maniry hanamarina vaovao momba an\'i ' + kandida.anarana + ' ' + kandida.fanampin_anarana + ' aho:')}" 
+              target="_blank" 
+              class="inline-block text-xs bg-emerald-600 text-white font-semibold px-3 py-1.5 rounded-lg hover:bg-emerald-700 shadow-sm">
+              💬 Manontania fanamarinana (WhatsApp)
+            </a>
+          </div>
+        </div>
+
+        <!-- TOLOKEVITRA SY FANDAHARAN'ASA -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3">
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Tolo-kevitra / Fandaharan'asa</h3>
+          <ul class="list-disc list-inside space-y-1.5 pl-1 text-xs text-gray-700">
+            ${fandaharanAsaHTML}
+          </ul>
+        </div>
+
+        <!-- BLOC LOKALOKA VS ZAVABITA -->
+        <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Lokaloka vs Zavabita (Miaraka amin'ny Note)</h3>
+            <span class="text-[9px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-bold">Taha %</span>
+          </div>
+          
+          <div class="space-y-3">
+            ${fampanantenanaHTML}
+          </div>
+        </div>
+      `;
+
+      // 7. ALGORITHME FIKAROHANA FANONTANIANA FENO
+      window.mikorokaTsahoFeno = function(fanontaniana) {
+        const valinContainer = document.getElementById("valin-tsaho-container");
+        const whatsappBtn = document.getElementById("whatsapp-fanontaniana");
+        
+        if (!fanontaniana || fanontaniana.trim() === "") {
+          valinContainer.innerHTML = mamoronaFactCards(kandida.fanamarinam_baovao);
+          whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent('Miarahaba MALAGASY.MG, mba maniry hanamarina vaovao momba an\'i ' + kandida.anarana + ' ' + kandida.fanampin_anarana + ' aho:')}`;
+          return;
+        }
+
+        const stopwords = [
+          've', 'izy', 'mba', 'marina', 'ny', 'momba', 'sy', 'amin', 'aminy', 
+          'fa', 'ho', 'dia', 'ao', 'eo', 'anefa', 'koa', 'aza', 'no', 'ireo', 
+          'ahoana', 'inona', 'iza', 'tsia', 'ity', 'ireto', 'anaty', 'izany'
+        ];
+
+        const madinika = fanontaniana.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "");
+        const tenyFototra = madinika.split(/\s+/).filter(t => t.length > 2 && !stopwords.includes(t));
+
+        const voasivana = (kandida.fanamarinam_baovao || []).filter(fb => {
+          const testText = `${fb.filazana} ${fb.fanazavana} ${(fb.keywords || []).join(" ")}`.toLowerCase();
+          
+          return tenyFototra.length === 0 
+            ? testText.includes(madinika) 
+            : tenyFototra.some(t => testText.includes(t));
+        });
+
+        valinContainer.innerHTML = mamoronaFactCards(voasivana);
+
+        whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent('Miarahaba MALAGASY.MG, mba maniry hanamarina ity fanontaniana ity momba an\'i ' + kandida.anarana + ' aho: « ' + fanontaniana + ' »')}`;
+      };
+    }
+  </script>
+</body>
+</html>

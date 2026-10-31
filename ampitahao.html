@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ampitahao | MALAGASY.MG</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- LOHA-PEJY -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="text-blue-600 font-bold text-sm flex items-center hover:underline">
+        &larr; Miverina
+      </a>
+      <h1 class="text-sm font-bold text-gray-800">Fampitahana Kandidà</h1>
+      <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">Mangarahara</span>
+    </div>
+  </header>
+
+  <!-- VONTOM-PEJY -->
+  <main class="flex-grow max-w-md mx-auto w-full px-4 py-4 space-y-4">
+    
+    <!-- SAFIDY KANDIDÀ SY SIVANA SOKAJY -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm space-y-3">
+      <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider text-center">Fidio ny sokajy sy ny kandidà 2 ampitahaina</h2>
+      
+      <!-- BOKOTRA SOKAJY (TABS) -->
+      <div class="flex space-x-1.5 overflow-x-auto pb-1 text-xs">
+        <button 
+          id="tab-filoha" 
+          onclick="ovaoSokajy('Filohampirenena')" 
+          class="tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm">
+          Filohampirenena
+        </button>
+        <button 
+          id="tab-depiote" 
+          onclick="ovaoSokajy('Solombavambahoaka')" 
+          class="tab-btn px-3 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded-full whitespace-nowrap text-xs">
+          Solombavambahoaka
+        </button>
+        <button 
+          id="tab-maire" 
+          onclick="ovaoSokajy('Ben\'ny tanàna')" 
+          class="tab-btn px-3 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded-full whitespace-nowrap text-xs">
+          Ben'ny tanàna
+        </button>
+      </div>
+
+      <!-- FIKAROHANA ANARANA TSY MILA MI-SCROLL -->
+      <div class="space-y-2.5 pt-1">
+        <div>
+          <label for="input1" class="block text-[10px] font-bold text-gray-500 mb-1">Kandidà Voalohany (Soraty ny anarany):</label>
+          <input 
+            type="text" 
+            id="input1" 
+            list="lisitra-kandida-datalist" 
+            placeholder="Soraty ohatra: Rajoelina, Gascar, Ravalo..." 
+            class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            oninput="ampitahao()"
+          >
+        </div>
+
+        <div>
+          <label for="input2" class="block text-[10px] font-bold text-gray-500 mb-1">Kandidà Faharoa (Soraty ny anarany):</label>
+          <input 
+            type="text" 
+            id="input2" 
+            list="lisitra-kandida-datalist" 
+            placeholder="Soraty ohatra: Ravalomanana, Siteny, Tojo..." 
+            class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            oninput="ampitahao()"
+          >
+        </div>
+      </div>
+
+      <!-- DATALIST TERATANY AO ANATY FINDAY -->
+      <datalist id="lisitra-kandida-datalist"></datalist>
+    </div>
+
+    <!-- VALIN'NY FAMPITAHANA -->
+    <div id="resultat-ampitahao" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-4">
+      <p class="text-center text-xs text-gray-400 py-6">Safidio ireo kandidà roa eo ambony hahitana ny fampitahana.</p>
+    </div>
+
+  </main>
+
+  <!-- FE-PEJY -->
+  <footer class="bg-white border-t border-gray-200 py-3 mt-auto">
+    <div class="max-w-md mx-auto px-4 text-center text-[11px] text-gray-400">
+      MALAGASY.MG • Tsy miankina amin'antoko politika
+    </div>
+  </footer>
+
+  <!-- FAMPIDIRANA AN'I DATA EFATRA -->
+  <script src="data_taloha.js"></script>
+  <script src="data_vaovao.js"></script>
+  <script src="data_bennytanana.js"></script>
+  <script src="data_solombavambahoaka.js"></script>
+
+  <!-- SCRIPT FAMPITAHANA SY FIKAROHANA -->
+  <script>
+    const kandidaData = [
+      ...(typeof kandidaTaloha !== 'undefined' ? kandidaTaloha : []),
+      ...(typeof kandidaVaovao !== 'undefined' ? kandidaVaovao : []),
+      ...(typeof kandidaBennyTanana !== 'undefined' ? kandidaBennyTanana : []),
+      ...(typeof kandidaSolombavambahoaka !== 'undefined' ? kandidaSolombavambahoaka : [])
+    ];
+
+    let sokajyAnkehitriny = "Filohampirenena";
+
+    function manadioSokajy(soratra) {
+      return (soratra || "").toLowerCase().replace(/[-\s']/g, "");
+    }
+
+    // Famenoana ny Datalist araka ny sokajy voafidy
+    function havaozyDatalist() {
+      const datalist = document.getElementById("lisitra-kandida-datalist");
+      datalist.innerHTML = "";
+
+      const voasivana = kandidaData
+        .filter(k => manadioSokajy(k.sokajy) === manadioSokajy(sokajyAnkehitriny))
+        .sort((a, b) => a.anarana.localeCompare(b.anarana));
+
+      voasivana.forEach(k => {
+        const faritra = k.kaominina ? ` (${k.kaominina})` : '';
+        const opt = document.createElement("option");
+        opt.value = `${k.anarana} ${k.fanampin_anarana}${faritra}`;
+        datalist.appendChild(opt);
+      });
+    }
+
+    // Fanovana ny sokajy (Tabs)
+    window.ovaoSokajy = function(sokajyVaovao) {
+      sokajyAnkehitriny = sokajyVaovao;
+
+      // Fanovana ny lokon'ny bokotra
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.className = "tab-btn px-3 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded-full whitespace-nowrap text-xs";
+      });
+
+      if (manadioSokajy(sokajyVaovao) === "filohampirenena") {
+        document.getElementById("tab-filoha").className = "tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
+      } else if (manadioSokajy(sokajyVaovao) === "solombavambahoaka") {
+        document.getElementById("tab-depiote").className = "tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
+      } else {
+        document.getElementById("tab-maire").className = "tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
+      }
+
+      // Fanadiovana ny fikarohana sy fanavaozana ny safidy
+      document.getElementById("input1").value = "";
+      document.getElementById("input2").value = "";
+      havaozyDatalist();
+      ampitahao();
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+      havaozyDatalist();
+    });
+
+    // Fampitahana
+    function ampitahao() {
+      const val1 = (document.getElementById("input1").value || "").trim().toLowerCase();
+      const val2 = (document.getElementById("input2").value || "").trim().toLowerCase();
+      const resultDiv = document.getElementById("resultat-ampitahao");
+
+      if (!val1 || !val2) {
+        resultDiv.innerHTML = `<p class="text-center text-xs text-gray-400 py-6">Soraty eo ambony ny anaran'ireo kandidà roa avy amin'ny sokajy <strong>« ${sokajyAnkehitriny} »</strong> tianao hampitahaina.</p>`;
+        return;
+      }
+
+      if (val1 === val2) {
+        resultDiv.innerHTML = `<p class="text-center text-xs text-red-500 font-medium py-6">Mifidiana kandidà roa tsy mitovy mba hahitana ny fampitahana.</p>`;
+        return;
+      }
+
+      // Fikarohana ilay kandidà avy amin'ny anarana nosoratana
+      const k1 = kandidaData.find(k => {
+        const faritra = k.kaominina ? ` (${k.kaominina})` : '';
+        const anaranaFeno = `${k.anarana} ${k.fanampin_anarana}${faritra}`.toLowerCase();
+        return anaranaFeno === val1 || `${k.anarana} ${k.fanampin_anarana}`.toLowerCase() === val1;
+      });
+
+      const k2 = kandidaData.find(k => {
+        const faritra = k.kaominina ? ` (${k.kaominina})` : '';
+        const anaranaFeno = `${k.anarana} ${k.fanampin_anarana}${faritra}`.toLowerCase();
+        return anaranaFeno === val2 || `${k.anarana} ${k.fanampin_anarana}`.toLowerCase() === val2;
+      });
+
+      if (!k1 || !k2) {
+        resultDiv.innerHTML = `<p class="text-center text-xs text-amber-700 py-6">Hamarino tsara ny tsipelina na tsindrio mivantana ilay soso-kevitra mipoitra rehefa manoratra ianao.</p>`;
+        return;
+      }
+
+      function mamoakaSaryHTML(k) {
+        return `
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center border border-gray-200 mx-auto shadow-inner">
+            <img src="${k.sary_url}" alt="${k.anarana}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div style="display:none;" class="w-full h-full text-blue-700 font-bold text-xs items-center justify-center">
+              ${k.anarana.charAt(0)}${k.fanampin_anarana.charAt(0)}
+            </div>
+          </div>
+        `;
+      }
+
+      function mamoakaSehatraHTML(k) {
+        if (!k.tombana_sehatra || k.tombana_sehatra.length === 0) {
+          return `<p class="text-[10px] text-gray-400 italic">Tsy misy angona</p>`;
+        }
+        return k.tombana_sehatra.map(s => `
+          <div class="bg-gray-50 p-2 rounded border border-gray-100 space-y-1">
+            <div class="flex justify-between items-center text-[10px]">
+              <span class="font-bold text-gray-700 truncate">${s.sehatra}</span>
+              <span class="font-extrabold text-gray-900">${s.taha}%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+              <div class="${s.loko || 'bg-blue-600'} h-1.5 rounded-full" style="width: ${s.taha}%"></div>
+            </div>
+            <p class="text-[9px] text-gray-500 italic leading-tight">${s.fanazavana}</p>
+          </div>
+        `).join("");
+      }
+
+      resultDiv.innerHTML = `
+        <div class="grid grid-cols-2 gap-3 border-b border-gray-200 pb-3">
+          <div class="text-center space-y-1">
+            ${mamoakaSaryHTML(k1)}
+            <h3 class="font-bold text-xs text-gray-900">${k1.anarana} ${k1.fanampin_anarana}</h3>
+            <p class="text-[10px] text-blue-600 font-bold">${k1.sokajy} ${k1.kaominina ? '• ' + k1.kaominina : ''}</p>
+            <p class="text-[10px] text-gray-500">${k1.antoko}</p>
+          </div>
+          <div class="text-center space-y-1">
+            ${mamoakaSaryHTML(k2)}
+            <h3 class="font-bold text-xs text-gray-900">${k2.anarana} ${k2.fanampin_anarana}</h3>
+            <p class="text-[10px] text-blue-600 font-bold">${k2.sokajy} ${k2.kaominina ? '• ' + k2.kaominina : ''}</p>
+            <p class="text-[10px] text-gray-500">${k2.antoko}</p>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-1">
+          <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-wider text-center">Fampitahana ny Zavabita sy Sehatra</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="space-y-2">${mamoakaSehatraHTML(k1)}</div>
+            <div class="space-y-2">${mamoakaSehatraHTML(k2)}</div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
