@@ -1,5 +1,5 @@
 // MALAGASY.MG - Service Worker (Fitehirizana ho an'ny Mode Hors-ligne)
-const CACHE_NAME = 'malagasy-mg-v1';
+const CACHE_NAME = 'malagasy-mg-v2';
 
 // Ireo rakitra fototra tehirizina ao anaty finday
 const RAKITRA_HOTEHIRIZINA = [
@@ -42,21 +42,30 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Famakiana ny pejy na dia tapaka aza ny aterineto (Fetch)
+// VAHAOLANA MAHARITRA: Aterineto aloha (Network-First) vao Fitadidiana (Cache)
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((valinyVoatahiry) => {
-      // Raha efa voatahiry ao anaty finday dia iny no avoaka avy hatrany
-      if (valinyVoatahiry) {
-        return valinyVoatahiry;
-      }
-      // Raha tsy ao dia alaina amin'ny aterineto
-      return fetch(event.request).catch(() => {
-        // Raha sendra tapaka ny aterineto ka pejy html no tadiavina
-        if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('./index.html');
+    fetch(event.request)
+      .then((valinyVaovao) => {
+        // Raha misy internet: avoaka avy hatrany ny vaovao farany sady havaozina mangina ny fitadidiana
+        if (valinyVaovao && valinyVaovao.status === 200) {
+          const dikaVaovao = valinyVaovao.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, dikaVaovao);
+          });
         }
-      });
-    })
+        return valinyVaovao;
+      })
+      .catch(() => {
+        // Raha tapaka tanteraka ny internet: eo vao alaina ao amin'ny fitadidiana (Mode Hors-ligne)
+        return caches.match(event.request).then((valinyVoatahiry) => {
+          if (valinyVoatahiry) {
+            return valinyVoatahiry;
+          }
+          if (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
+            return caches.match('./index.html');
+          }
+        });
+      })
   );
 });
