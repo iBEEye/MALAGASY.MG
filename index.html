@@ -12,90 +12,106 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
 
-  <!-- LOHA-PEJY (NOHAVAOZINA) -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-20">
-    <div class="max-w-md mx-auto px-3 py-2.5 flex items-center justify-between gap-2">
-      <!-- Ankavia: Logo kely sy Lohateny misy andalana 2 -->
-      <div class="flex items-center space-x-2 min-w-0">
-        <img src="images/logo_fysaina.png" alt="Fy Saina" class="h-5 object-contain flex-shrink-0" onerror="this.style.display='none'">
-        <div class="leading-tight min-w-0">
-          <h1 class="text-sm font-black text-gray-900 tracking-tight">MALAGASY.MG</h1>
-          <p class="text-[9px] text-gray-500 truncate">Sehatra tsy mitongilana</p>
-          <p class="text-[8px] text-gray-400 truncate">Tsy miankina amin'antoko pôlitika</p>
+  <!-- LOHA-PEJY FY SAINA (MADIO SY KANTO) -->
+  <header class="bg-white/95 backdrop-blur-sm border-b border-amber-100 sticky top-0 z-20">
+    <div class="max-w-md mx-auto px-3.5 py-2.5 flex items-center justify-between">
+      <div class="flex items-center space-x-2.5 min-w-0">
+        <img src="images/logo_fysaina.png" alt="Fy Saina" class="h-6 object-contain flex-shrink-0" onerror="this.style.display='none'">
+        <div class="min-w-0">
+          <h1 class="text-sm font-black text-amber-950 tracking-tight leading-none">MALAGASY.MG</h1>
+          <!-- Tsipika manify miloko ambre/volamena -->
+          <div class="w-full h-[1.5px] bg-gradient-to-r from-amber-500 via-amber-300 to-transparent my-1"></div>
+          <p class="text-[8px] font-bold text-amber-900/80 leading-none truncate tracking-tight">
+            Tsy mitongilana • Mangarahara • Marim-pototra • Tsy miankina
+          </p>
         </div>
       </div>
-      
-      <!-- Ankavanana: Bokotra kely mirindra (Lalàna sy Fampitaha) -->
-      <div class="flex items-center space-x-1 flex-shrink-0">
-        <a href="fanabeazana.html" class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold px-2 py-1.5 rounded-lg flex items-center space-x-1 hover:bg-emerald-100">
-          <span>📖 Lalàna</span>
-        </a>
-        <a href="ampitahao.html" class="text-[10px] bg-blue-50 text-blue-800 border border-blue-200 font-bold px-2 py-1.5 rounded-lg flex items-center space-x-1 hover:bg-blue-100">
-          <span>⚖️ Fampitaha</span>
-        </a>
-      </div>
+      <span class="text-[8px] bg-amber-100 text-amber-900 font-extrabold px-1.5 py-0.5 rounded-full border border-amber-200 flex-shrink-0">
+        DÉMO
+      </span>
     </div>
   </header>
 
-  <!-- VONTOM-PEJY (ACCUEIL & MENU PRINCIPAL) -->
-  <main class="flex-grow max-w-md mx-auto w-full px-4 py-4 space-y-4">
+  <!-- VONTOM-PEJY (ACCUEIL KANTO) -->
+  <main class="flex-grow max-w-md mx-auto w-full px-3.5 py-3.5 space-y-4 pb-24">
     
-    <!-- TENY FANDRAISANA (HERO BANNER) -->
-    <div class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white p-4 rounded-2xl shadow-sm space-y-2 text-center">
-      <div class="w-10 h-10 bg-white/10 rounded-full mx-auto flex items-center justify-center text-lg">🇲🇬</div>
-      <h2 class="text-sm font-extrabold tracking-wide">Tongasoa eto amin'ny MALAGASY.MG</h2>
-      <p class="text-xs text-blue-100 leading-relaxed">
+    <!-- TENY FANDRAISANA -->
+    <div class="bg-gradient-to-br from-amber-900 via-amber-800 to-stone-900 text-white p-3.5 rounded-2xl shadow-sm space-y-1.5 text-center">
+      <div class="w-8 h-8 bg-white/10 rounded-full mx-auto flex items-center justify-center text-sm">🇲🇬</div>
+      <h2 class="text-xs font-black tracking-wide">Tongasoa eto amin'ny MALAGASY.MG</h2>
+      <p class="text-[11px] text-amber-100 leading-relaxed">
         Sehatra mahaleotena, tsy miankina amin'antoko pôlitika, tsy mitongilana, mangarahara ary azo hamarinina ho an'ny olom-pirenena.
       </p>
     </div>
 
-    <!-- BOKOTRA LEHIBE TELO ISAFIDIANANA (MENU PRINCIPAL) -->
-    <div class="space-y-2.5">
-      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider text-center">Safidio ny sehatra tianao hojerena</h3>
+    <!-- IREO KARATRA LEHIBE ROA (TALAKY MASO: FAMPITAHA & LALANA) -->
+    <div class="grid grid-cols-2 gap-2.5">
+      <!-- Karatra 1: Fampitaha -->
+      <a href="ampitahao.html" class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/80 hover:border-amber-400 p-3 rounded-2xl shadow-sm space-y-1.5 transition block group">
+        <div class="w-7 h-7 bg-amber-600 text-white rounded-xl flex items-center justify-center text-xs shadow-sm">
+          ⚖️
+        </div>
+        <span class="text-xs font-black text-amber-950 block group-hover:text-amber-700">Fampitaha Kandidà</span>
+        <p class="text-[9px] text-amber-800/80 leading-tight">Ampitahao mivantana ny tolo-kevitra sy ny zavabita.</p>
+      </a>
+
+      <!-- Karatra 2: Lalàna -->
+      <a href="fanabeazana.html" class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200/80 hover:border-emerald-400 p-3 rounded-2xl shadow-sm space-y-1.5 transition block group">
+        <div class="w-7 h-7 bg-emerald-700 text-white rounded-xl flex items-center justify-center text-xs shadow-sm">
+          📖
+        </div>
+        <span class="text-xs font-black text-emerald-950 block group-hover:text-emerald-800">Lalàna & Andraikitra</span>
+        <p class="text-[9px] text-emerald-800/80 leading-tight">Fantaro ny tena asan'ny mpitondra mba tsy ho voafitaka.</p>
+      </a>
+    </div>
+
+    <!-- BOKOTRA LEHIBE TELO ISAFIDIANANA NY KANDIDA -->
+    <div class="space-y-2">
+      <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider text-center">Fidio ny sokajin'ny kandidà</h3>
       
-      <div class="grid grid-cols-1 gap-2.5">
-        <!-- Bokotra Filohampirenena -->
-        <button onclick="mifidySokajyAccueil('Filohampirenena')" class="w-full bg-white hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-600 p-3.5 rounded-xl shadow-sm flex items-center justify-between transition group text-left">
-          <div class="flex items-center space-x-3">
-            <span class="text-2xl p-2 bg-blue-50 rounded-lg group-hover:bg-blue-100">🏛️</span>
+      <div class="grid grid-cols-1 gap-2">
+        <!-- Filohampirenena -->
+        <button onclick="mifidySokajyAccueil('Filohampirenena')" class="w-full bg-white hover:bg-amber-50/50 border border-gray-200 hover:border-amber-600 p-3 rounded-xl shadow-sm flex items-center justify-between transition group text-left">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-xl p-1.5 bg-amber-50 rounded-lg group-hover:bg-amber-100">🏛️</span>
             <div>
-              <span class="text-sm font-extrabold text-gray-900 block group-hover:text-blue-700">Filohampirenena</span>
-              <span class="text-[10px] text-gray-400">Ireo mpitondra sy kandidà hatramin'ny 1960</span>
+              <span class="text-xs font-extrabold text-gray-900 block group-hover:text-amber-900">Filohampirenena</span>
+              <span class="text-[9px] text-gray-400">Ireo mpitondra sy kandidà hatramin'ny 1960</span>
             </div>
           </div>
-          <span class="text-gray-300 group-hover:text-blue-600 font-bold">&rarr;</span>
+          <span class="text-amber-600 font-bold text-xs">&rarr;</span>
         </button>
 
-        <!-- Bokotra Solombavambahoaka -->
-        <button onclick="mifidySokajyAccueil('Solombavambahoaka')" class="w-full bg-white hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-600 p-3.5 rounded-xl shadow-sm flex items-center justify-between transition group text-left">
-          <div class="flex items-center space-x-3">
-            <span class="text-2xl p-2 bg-amber-50 rounded-lg group-hover:bg-amber-100">📜</span>
+        <!-- Solombavambahoaka -->
+        <button onclick="mifidySokajyAccueil('Solombavambahoaka')" class="w-full bg-white hover:bg-amber-50/50 border border-gray-200 hover:border-amber-600 p-3 rounded-xl shadow-sm flex items-center justify-between transition group text-left">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-xl p-1.5 bg-amber-50 rounded-lg group-hover:bg-amber-100">📜</span>
             <div>
-              <span class="text-sm font-extrabold text-gray-900 block group-hover:text-blue-700">Solombavambahoaka</span>
-              <span class="text-[10px] text-gray-400">Ireo solontenan'ny distrika ao Tsimbazaza</span>
+              <span class="text-xs font-extrabold text-gray-900 block group-hover:text-amber-900">Solombavambahoaka</span>
+              <span class="text-[9px] text-gray-400">Solontenan'ny distrika ao Tsimbazaza</span>
             </div>
           </div>
-          <span class="text-gray-300 group-hover:text-blue-600 font-bold">&rarr;</span>
+          <span class="text-amber-600 font-bold text-xs">&rarr;</span>
         </button>
 
-        <!-- Bokotra Ben'ny tanàna -->
-        <button onclick="mifidySokajyAccueil('Ben\'ny tanàna')" class="w-full bg-white hover:bg-blue-50 border-2 border-gray-200 hover:border-blue-600 p-3.5 rounded-xl shadow-sm flex items-center justify-between transition group text-left">
-          <div class="flex items-center space-x-3">
-            <span class="text-2xl p-2 bg-emerald-50 rounded-lg group-hover:bg-emerald-100">🏙️</span>
+        <!-- Ben'ny tanàna -->
+        <button onclick="mifidySokajyAccueil('Ben\'ny tanàna')" class="w-full bg-white hover:bg-amber-50/50 border border-gray-200 hover:border-amber-600 p-3 rounded-xl shadow-sm flex items-center justify-between transition group text-left">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-xl p-1.5 bg-amber-50 rounded-lg group-hover:bg-amber-100">🏙️</span>
             <div>
-              <span class="text-sm font-extrabold text-gray-900 block group-hover:text-blue-700">Ben'ny tanàna</span>
-              <span class="text-[10px] text-gray-400">Fitantanana ifotony sy kaominina</span>
+              <span class="text-xs font-extrabold text-gray-900 block group-hover:text-amber-900">Ben'ny tanàna</span>
+              <span class="text-[9px] text-gray-400">Fitantanana ifotony sy kaominina</span>
             </div>
           </div>
-          <span class="text-gray-300 group-hover:text-blue-600 font-bold">&rarr;</span>
+          <span class="text-amber-600 font-bold text-xs">&rarr;</span>
         </button>
       </div>
     </div>
 
     <!-- FARITRA LISITRA (MIPOTRA REHEFA MISY BOKOTRA VOAKITIKA) -->
-    <div id="faritra-lisitra" style="display: none;" class="space-y-3 pt-2">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-        <h3 id="lohateny-sokajy-voafidy" class="text-xs font-black text-blue-900 uppercase"></h3>
+    <div id="faritra-lisitra" style="display: none;" class="space-y-2.5 pt-2">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-1.5">
+        <h3 id="lohateny-sokajy-voafidy" class="text-xs font-black text-amber-950 uppercase"></h3>
         <button onclick="hakatonaLisitra()" class="text-[10px] text-red-500 font-bold hover:underline">✕ Hakatona</button>
       </div>
 
@@ -105,7 +121,7 @@
           type="search" 
           id="fikarohana" 
           placeholder="Tadiavo ny anarana na antoko na tanàna..." 
-          class="w-full px-3 py-2 text-xs bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 text-xs bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
         >
       </div>
 
@@ -114,8 +130,8 @@
 
   </main>
 
-  <!-- FE-PEJY (MIZARA 3 ANDALANA) -->
-  <footer class="bg-white border-t border-gray-200 py-3 mt-auto">
+  <!-- FE-PEJY (MIZARA 3 ANDALANA - NAKATRA EO AMBONIN'NY BARA FLOTTANTE) -->
+  <footer class="bg-white border-t border-gray-200 pt-3 pb-24 mt-auto">
     <div class="max-w-md mx-auto px-4 text-center space-y-1">
       <p class="text-[11px] font-bold text-gray-700">MALAGASY.MG • <span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded text-[9px] uppercase font-bold">Version Démo</span></p>
       <p class="text-[10px] text-gray-500">Sehatra tsy mitongilana ho an'ny olompirenena</p>
@@ -242,7 +258,23 @@
       document.getElementById("faritra-lisitra").style.display = "none";
     };
   </script>
-<!-- FAMPANDRAISANA NY SERVICE WORKER (PWA) -->
+<!-- BARA FLOTTANTE EO AMBANY FINDAY (BOTTOM NAVIGATION) -->
+  <nav class="fixed bottom-3 left-1/2 -translate-x-1/2 w-[92%] max-w-sm bg-white/95 backdrop-blur-md border border-amber-200/70 shadow-xl rounded-full py-2 px-3 flex justify-around items-center z-50">
+    <a href="index.html" class="flex flex-col items-center text-amber-900 font-bold text-[9px] space-y-0.5">
+      <span class="text-base leading-none">🏠</span>
+      <span>Fandraisana</span>
+    </a>
+    <a href="ampitahao.html" class="flex flex-col items-center text-gray-400 hover:text-amber-800 font-medium text-[9px] space-y-0.5 transition">
+      <span class="text-base leading-none">⚖️</span>
+      <span>Fampitaha</span>
+    </a>
+    <a href="fanabeazana.html" class="flex flex-col items-center text-gray-400 hover:text-amber-800 font-medium text-[9px] space-y-0.5 transition">
+      <span class="text-base leading-none">📖</span>
+      <span>Lalàna</span>
+    </a>
+  </nav>
+
+  <!-- FAMPANDRAISANA NY SERVICE WORKER (PWA) -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
