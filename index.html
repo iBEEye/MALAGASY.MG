@@ -35,33 +35,52 @@
   <!-- VONTOM-PEJY (ACCUEIL KANTO) -->
   <main class="flex-grow max-w-md mx-auto w-full px-3.5 py-3.5 space-y-4 pb-24">
     
-    <!-- TENY FANDRAISANA -->
-    <div class="bg-gradient-to-br from-amber-900 via-amber-800 to-stone-900 text-white p-3.5 rounded-2xl shadow-sm space-y-1.5 text-center">
-      <div class="w-8 h-8 bg-white/10 rounded-full mx-auto flex items-center justify-center text-sm">🇲🇬</div>
-      <h2 class="text-xs font-black tracking-wide">Tongasoa eto amin'ny MALAGASY.MG</h2>
-      <p class="text-[11px] text-amber-100 leading-relaxed">
-        Sehatra mahaleotena, tsy miankina amin'antoko pôlitika, tsy mitongilana, mangarahara ary azo hamarinina ho an'ny olom-pirenena.
-      </p>
+    <!-- TENY FANDRAISANA (TAMBOHO GASY MADIO 100% - TSY MISY VOILE TSY MISY TARATASY) -->
+    <div class="relative overflow-hidden rounded-2xl shadow-lg border-2 border-[#934713]/50 p-5 bg-cover bg-center text-center space-y-2.5" style="background-image: url('images/fond_rindrina.jpg');">
+      
+      <!-- Soratra mivantana eo ambonin'ny vato misy aloka mahery vaika mba hisongadina -->
+      <div class="space-y-1.5">
+        <!-- MARIKA KELY EO AMBONIN'NY TAMBOHO GASY: SAINA MALAGASY + OLOMPIRENENA FOTSINY -->
+        <!-- MARIKA SAINAM-PIRENENA MALAGASY TENA IZY (SVG) + OLOMPIRENENA -->
+        <span class="inline-flex items-center space-x-2 bg-black/60 backdrop-blur-sm text-[#FCCC5D] text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider border border-[#FCCC5D]/60 shadow-md">
+          <!-- Sainam-pirenena Malagasy marina (Fotsy, Mena, Maitso) tsy mivadika litera MG -->
+          <svg class="w-4 h-3 rounded-[2px] shadow-sm flex-shrink-0" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+            <rect width="900" height="600" fill="#007E3A"/>
+            <rect width="900" height="300" fill="#FC3D32"/>
+            <rect width="300" height="600" fill="#FFFFFF"/>
+          </svg>
+          <span>Olompirenena</span>
+        </span>
+        
+        <h2 class="text-base font-black tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
+          Tongasoa eto amin'ny MALAGASY.MG
+        </h2>
+        
+        <p class="text-[11px] text-[#FFFCEB] leading-relaxed font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,1)] px-1">
+          Sehatra mahaleotena, tsy miankina amin'antoko pôlitika, tsy mitongilana, mangarahara ary azo hamarinina ho an'ny olompirenena.
+        </p>
+      </div>
+
     </div>
 
-    <!-- IREO KARATRA LEHIBE ROA (TALAKY MASO: FAMPITAHA & LALANA) -->
+    <!-- IREO KARATRA LEHIBE ROA (LOKO MARON FY SAINA #934713 TSY MISY MANGA MI-DÉTONNE) -->
     <div class="grid grid-cols-2 gap-2.5">
       <!-- Karatra 1: Fampitaha -->
-      <a href="ampitahao.html" class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/80 hover:border-amber-400 p-3 rounded-2xl shadow-sm space-y-1.5 transition block group">
-        <div class="w-7 h-7 bg-amber-600 text-white rounded-xl flex items-center justify-center text-xs shadow-sm">
+      <a href="ampitahao.html" class="bg-white border-2 border-[#934713]/30 hover:border-[#934713] p-3 rounded-2xl shadow-sm space-y-1.5 transition block group text-left">
+        <div class="w-8 h-8 bg-[#934713] text-white rounded-xl flex items-center justify-center text-sm shadow-sm">
           ⚖️
         </div>
-        <span class="text-xs font-black text-amber-950 block group-hover:text-amber-700">Fampitaha Kandidà</span>
-        <p class="text-[9px] text-amber-800/80 leading-tight">Ampitahao mivantana ny tolo-kevitra sy ny zavabita.</p>
+        <span class="text-xs font-black text-[#934713] block group-hover:underline">Fampitaha Kandidà</span>
+        <p class="text-[9px] text-gray-600 leading-tight">Ampitahao mivantana ny tolo-kevitra sy ny zavabita.</p>
       </a>
 
-      <!-- Karatra 2: Lalàna -->
-      <a href="fanabeazana.html" class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200/80 hover:border-emerald-400 p-3 rounded-2xl shadow-sm space-y-1.5 transition block group">
-        <div class="w-7 h-7 bg-emerald-700 text-white rounded-xl flex items-center justify-center text-xs shadow-sm">
+      <!-- Karatra 2: Lalàna (Loko Maron #934713 sy Ambre mifanaraka amin'ny Charte) -->
+      <a href="fanabeazana.html" class="bg-white border-2 border-[#934713]/30 hover:border-[#934713] p-3 rounded-2xl shadow-sm space-y-1.5 transition block group text-left">
+        <div class="w-8 h-8 bg-[#934713] text-[#FCCC5D] rounded-xl flex items-center justify-center text-sm shadow-sm font-bold">
           📖
         </div>
-        <span class="text-xs font-black text-emerald-950 block group-hover:text-emerald-800">Lalàna & Andraikitra</span>
-        <p class="text-[9px] text-emerald-800/80 leading-tight">Fantaro ny tena asan'ny mpitondra mba tsy ho voafitaka.</p>
+        <span class="text-xs font-black text-[#934713] block group-hover:underline">Lalàna & Andraikitra</span>
+        <p class="text-[9px] text-gray-600 leading-tight">Fantaro ny tena asan'ny mpitondra mba tsy ho voafitaka.</p>
       </a>
     </div>
 
@@ -105,6 +124,52 @@
           </div>
           <span class="text-amber-600 font-bold text-xs">&rarr;</span>
         </button>
+      </div>
+    </div>
+
+    <!-- FIZARANA FANAZAVANA TENY NAFOHEZINA (BOKOTRA AZO TSINDRINA MISY ROHY MIVANTANA) -->
+    <div class="bg-[#FFFCEB] border border-amber-200/80 rounded-2xl p-3.5 shadow-sm space-y-2.5">
+      <div class="flex items-center justify-between border-b border-amber-200/60 pb-1.5">
+        <div class="flex items-center space-x-2">
+          <span class="text-base">📖</span>
+          <h3 class="text-xs font-black text-[#934713] uppercase tracking-wide">Famaritana sy Teny Nafohezina</h3>
+        </div>
+        <span class="text-[9px] text-gray-400 font-medium">Tsindrio ny bokotra &rarr;</span>
+      </div>
+      
+      <div class="grid grid-cols-1 gap-2 text-[10px]">
+        <!-- 1. ODD (Mampifandray mivantana amin'ny ONU) -->
+        <a href="https://www.un.org/sustainabledevelopment/fr/objectifs-de-developpement-durable/" target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-amber-50/60 p-2.5 rounded-xl border border-amber-200 shadow-sm transition block group">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="font-black text-[#934713] group-hover:underline">ODD : Objectifs de Développement Durable</span>
+            <span class="text-blue-600 font-bold text-xs">&rarr;</span>
+          </div>
+          <p class="text-gray-600 leading-tight">Tanjona Fampandrosoana Maharitra miisa 17 nofaritan'ny Firenena Mikambana (ONU).</p>
+        </a>
+        
+        <!-- 2. CENI -->
+        <a href="https://ceni-madagascar.mg" target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-amber-50/60 p-2.5 rounded-xl border border-amber-200 shadow-sm transition block group">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="font-black text-[#934713] group-hover:underline">CENI : Commission Electorale Nationale Indépendante</span>
+            <span class="text-blue-600 font-bold text-xs">&rarr;</span>
+          </div>
+          <p class="text-gray-600 leading-tight">Vaomiera Nasionaly Mahaleotena misahana ny fikarakarana ny fifidianana eto Madagasikara.</p>
+        </a>
+        
+        <!-- 3. HCC -->
+        <a href="https://hcc.gov.mg" target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-amber-50/60 p-2.5 rounded-xl border border-amber-200 shadow-sm transition block group">
+          <div class="flex justify-between items-center mb-0.5">
+            <span class="font-black text-[#934713] group-hover:underline">HCC : Haute Cour Constitutionnelle</span>
+            <span class="text-blue-600 font-bold text-xs">&rarr;</span>
+          </div>
+          <p class="text-gray-600 leading-tight">Fitsarana Avo momba ny Lalàmpanorenana miantoka ny fanajana ny lalàna fototra sy mamoaka ny voka-pifidianana ofisialy.</p>
+        </a>
+
+        <!-- 4. REDDITION DE COMPTES -->
+        <div class="bg-white p-2.5 rounded-xl border border-amber-200 shadow-sm space-y-0.5">
+          <span class="font-black text-[#52B69A] block">Reddition de Comptes : Fanaovana Tatitra sy Fandraisana Andraikitra</span>
+          <p class="text-gray-600 leading-tight">Adidin'ny olom-boafidy amin'ny fampahafantarana ny fampiasana ny volam-bahoaka sy ny vokatry ny asany.</p>
+        </div>
       </div>
     </div>
 
@@ -193,31 +258,38 @@
         const karatra = document.createElement("article");
         karatra.className = "bg-white border border-gray-200 rounded-lg p-3 shadow-sm flex items-center space-x-3";
         karatra.innerHTML = `
-          <div class="w-11 h-11 rounded-full overflow-hidden bg-blue-100 flex-shrink-0 flex items-center justify-center border border-gray-200 shadow-inner">
+          <div class="w-12 h-12 rounded-xl overflow-hidden bg-amber-50 flex-shrink-0 flex items-center justify-center border border-amber-200 shadow-sm relative">
             <img 
               src="${k.sary_url}" 
               alt="${k.anarana}" 
               class="w-full h-full object-cover"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             >
-            <div style="display:none;" class="w-full h-full text-blue-700 font-bold text-xs items-center justify-center">
+            <div style="display:none;" class="w-full h-full text-amber-800 font-bold text-xs items-center justify-center">
               ${k.anarana.charAt(0)}${k.fanampin_anarana.charAt(0)}
             </div>
           </div>
           
-          <div class="flex-grow min-w-0">
-            <div class="flex items-center space-x-1">
-              <span class="text-[10px] font-bold text-blue-600 uppercase tracking-tight">${k.sokajy}</span>
-              ${k.kaominina ? `<span class="text-gray-300 text-xs">•</span><span class="text-[10px] text-emerald-700 font-bold truncate">${k.kaominina}</span>` : ''}
-              <span class="text-gray-300 text-xs">•</span>
-              <span class="text-[11px] text-gray-500 truncate">${k.antoko}</span>
+          <div class="flex-grow min-w-0 space-y-1">
+            <div class="flex items-center space-x-1.5 flex-wrap">
+              <span class="text-[9px] font-extrabold bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded">${k.sokajy}</span>
+              ${k.kaominina ? `<span class="text-[9px] font-bold bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded">${k.kaominina}</span>` : ''}
+              <!-- Marika Reddition de Compte Aesthetic -->
+              <span class="text-[9px] font-bold bg-green-100 text-green-800 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+                ✓ Reddition
+              </span>
             </div>
-            <h2 class="text-xs font-bold text-gray-900 truncate">${k.anarana} ${k.fanampin_anarana}</h2>
-            <p class="text-[11px] text-gray-500 truncate">${k.fari_pahaizana}</p>
+            <h2 class="text-xs font-black text-gray-900 truncate">${k.anarana} ${k.fanampin_anarana}</h2>
+            <div class="flex items-center justify-between text-[10px] text-gray-500">
+              <span class="truncate pr-2">${k.antoko || 'Tsy miankina'}</span>
+              <span class="text-amber-700 font-extrabold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200/50" title="Taha miorina amin'ny fenitra ODD sy ny zava-bita voamarina">
+                ODD: ${k.odd_score ? k.odd_score + '%' : 'Voamarina'}
+              </span>
+            </div>
           </div>
 
-          <a href="profil.html?id=${k.id}" class="text-xs bg-gray-50 border border-gray-200 text-blue-600 px-2.5 py-1.5 rounded font-medium flex-shrink-0 hover:bg-blue-50">
-            Hijery &rarr;
+          <a href="profil.html?id=${k.id}" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-2 rounded-xl font-bold flex-shrink-0 shadow-sm transition">
+            &rarr;
           </a>
         `;
         lisitraContainer.appendChild(karatra);
@@ -256,6 +328,14 @@
 
     window.hakatonaLisitra = function() {
       document.getElementById("faritra-lisitra").style.display = "none";
+    };
+
+    // Fiasana vaovao ho an'ny Fangatahana Porofo (Demande de justification)
+    window.mangatakaPorofo = function(anaranKandida) {
+      const porofo = prompt(`Mangataka fanazavana fanampiny momba an'i "${anaranKandida}". Apetraho eto ny fanontanianao na ny tarehimarika tianao hamarinina (hampitaina amin'ny MALINA/CENI/INSTAT):`);
+      if (porofo) {
+        alert(`Misaotra! Voaray ny fangatahanao momba an'i "${anaranKandida}". Handalo fanamarinana any amin'ny loharano ofisialy izy io.`);
+      }
     };
   </script>
 <!-- BARA FLOTTANTE EO AMBANY FINDAY (BOTTOM NAVIGATION) -->
