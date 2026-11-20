@@ -1,10 +1,12 @@
 // MALAGASY.MG - Service Worker (Fitehirizana ho an'ny Mode Hors-ligne)
-const CACHE_NAME = 'malagasy-mg-v2';
+const CACHE_NAME = 'malagasy-mg-v3';
 
 // Ireo rakitra fototra tehirizina ao anaty finday
 const RAKITRA_HOTEHIRIZINA = [
   './',
   './index.html',
+  './images/logo_timg.png',
+  './images/logo_fysaina.png',
   './profil.html',
   './ampitahao.html',
   './fanabeazana.html',

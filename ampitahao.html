@@ -12,7 +12,7 @@
   <!-- LOHA-PEJY (MILAMINA SY MADIO) -->
   <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
     <div class="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between">
-      <a href="index.html" class="text-blue-600 font-bold text-xs flex items-center hover:underline">
+      <a href="index.html" class="text-[#1E6091] font-bold text-xs flex items-center hover:underline">
         &larr; Miverina
       </a>
       <h1 class="text-sm font-black text-gray-800">Fampitahana Kandidà</h1>
@@ -32,7 +32,7 @@
         <button 
           id="tab-filoha" 
           onclick="ovaoSokajy('Filohampirenena')" 
-          class="tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm">
+          class="tab-btn px-3 py-1.5 bg-[#934713] text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm">
           Filohampirenena
         </button>
         <button 
@@ -58,7 +58,7 @@
             id="input1" 
             list="lisitra-kandida-datalist" 
             placeholder="Soraty ohatra: Rajoelina, Gascar, Ravalo..." 
-            class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#934713]"
             oninput="ampitahao()"
           >
         </div>
@@ -70,7 +70,7 @@
             id="input2" 
             list="lisitra-kandida-datalist" 
             placeholder="Soraty ohatra: Ravalomanana, Siteny, Tojo..." 
-            class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="w-full text-xs p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#934713]"
             oninput="ampitahao()"
           >
         </div>
@@ -144,11 +144,11 @@
       });
 
       if (manadioSokajy(sokajyVaovao) === "filohampirenena") {
-        document.getElementById("tab-filoha").className = "tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
+        document.getElementById("tab-filoha").className = "tab-btn px-3 py-1.5 bg-[#934713] text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
       } else if (manadioSokajy(sokajyVaovao) === "solombavambahoaka") {
-        document.getElementById("tab-depiote").className = "tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
+        document.getElementById("tab-depiote").className = "tab-btn px-3 py-1.5 bg-[#934713] text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
       } else {
-        document.getElementById("tab-maire").className = "tab-btn px-3 py-1.5 bg-blue-600 text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
+        document.getElementById("tab-maire").className = "tab-btn px-3 py-1.5 bg-[#934713] text-white font-bold rounded-full whitespace-nowrap text-xs shadow-sm";
       }
 
       // Fanadiovana ny fikarohana sy fanavaozana ny safidy
@@ -218,7 +218,7 @@
               <span class="font-extrabold text-gray-900">${s.taha}%</span>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-              <div class="${s.loko || 'bg-blue-600'} h-1.5 rounded-full" style="width: ${s.taha}%"></div>
+              <div class="${s.loko || 'bg-[#934713]'} h-1.5 rounded-full" style="width: ${s.taha}%"></div>
             </div>
             <p class="text-[9px] text-gray-500 italic leading-tight">${s.fanazavana}</p>
           </div>
@@ -229,14 +229,14 @@
         <div class="grid grid-cols-2 gap-3 border-b border-gray-200 pb-3">
           <div class="text-center space-y-1">
             ${mamoakaSaryHTML(k1)}
-            <h3 class="font-bold text-xs text-gray-900">${k1.anarana} ${k1.fanampin_anarana}</h3>
-            <p class="text-[10px] text-blue-600 font-bold">${k1.sokajy} ${k1.kaominina ? '• ' + k1.kaominina : ''}</p>
+            <h3 class="font-bold text-xs text-gray-900"><a href="profil.html?id=${k1.id}" class="hover:underline text-[#934713]">${k1.anarana} ${k1.fanampin_anarana}</a></h3>
+            <p class="text-[10px] text-[#1E6091] font-bold">${k1.sokajy} ${k1.kaominina ? '• ' + k1.kaominina : ''}</p>
             <p class="text-[10px] text-gray-500">${k1.antoko}</p>
           </div>
           <div class="text-center space-y-1">
             ${mamoakaSaryHTML(k2)}
-            <h3 class="font-bold text-xs text-gray-900">${k2.anarana} ${k2.fanampin_anarana}</h3>
-            <p class="text-[10px] text-blue-600 font-bold">${k2.sokajy} ${k2.kaominina ? '• ' + k2.kaominina : ''}</p>
+            <h3 class="font-bold text-xs text-gray-900"><a href="profil.html?id=${k2.id}" class="hover:underline text-[#934713]">${k2.anarana} ${k2.fanampin_anarana}</a></h3>
+            <p class="text-[10px] text-[#1E6091] font-bold">${k2.sokajy} ${k2.kaominina ? '• ' + k2.kaominina : ''}</p>
             <p class="text-[10px] text-gray-500">${k2.antoko}</p>
           </div>
         </div>
@@ -257,5 +257,21 @@
       `;
     }
   </script>
+
+	<!-- BARA FLOTTANTE EO AMBANY FINDAY (BOTTOM NAVIGATION) -->
+	<nav class="fixed bottom-3 left-1/2 -translate-x-1/2 w-[92%] max-w-sm bg-white/95 backdrop-blur-md border border-amber-200/70 shadow-xl rounded-full py-2 px-3 flex justify-around items-center z-50">
+		<a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-amber-800 font-medium text-[9px] space-y-0.5 transition">
+			<span class="text-base leading-none">🏠</span>
+			<span>Fandraisana</span>
+		</a>
+		<a href="ampitahao.html" class="flex flex-col items-center text-[#934713] font-bold text-[9px] space-y-0.5">
+			<span class="text-base leading-none">⚖️</span>
+			<span>Fampitaha</span>
+		</a>
+		<a href="fanabeazana.html" class="flex flex-col items-center text-gray-400 hover:text-amber-800 font-medium text-[9px] space-y-0.5 transition">
+			<span class="text-base leading-none">📖</span>
+			<span>Lalàna</span>
+		</a>
+	</nav>
 </body>
 </html>
