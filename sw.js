@@ -5,6 +5,7 @@ const CACHE_NAME = 'malagasy-mg-v3';
 const RAKITRA_HOTEHIRIZINA = [
   './',
   './index.html',
+  './images/Tsihy.jpg',
   './images/logo_timg.png',
   './images/logo_fysaina.png',
   './profil.html',

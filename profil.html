@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mombamomba ny Kandidà | MALAGASY.MG</title>
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">
+	// Fangatahana porofo sy fanazavana fanampiny
+	window.mangatakaPorofo = function(anaranKandida) {
+		const fanontaniana = prompt(`Mangataka fanazavana fanampiny na porofo momba an'i "${anaranKandida}".\nInona ny tarehimarika na fanambarana tianao hamarinina?`);
+		if (fanontaniana && fanontaniana.trim() !== "") {
+			alert(`Misaotra anao! Voaray ny fangatahanao momba an'i "${anaranKandida}".\nHampitaina amin'ny ekipan'ny fanamarinam-baovao sy ireo loharano ofisialy (CENI/HCC/MALINA).`);
+		}
+	};
+
+</script>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
 
@@ -40,10 +49,46 @@
   </footer>
 
   <!-- FAMPIDIRANA NY ANGONA EFATRA -->
-  <script src="data_taloha.js"></script>
-  <script src="data_vaovao.js"></script>
-  <script src="data_bennytanana.js"></script>
-  <script src="data_solombavambahoaka.js"></script>
+  <script src="data_taloha.js">
+	// Fangatahana porofo sy fanazavana fanampiny
+	window.mangatakaPorofo = function(anaranKandida) {
+		const fanontaniana = prompt(`Mangataka fanazavana fanampiny na porofo momba an'i "${anaranKandida}".\nInona ny tarehimarika na fanambarana tianao hamarinina?`);
+		if (fanontaniana && fanontaniana.trim() !== "") {
+			alert(`Misaotra anao! Voaray ny fangatahanao momba an'i "${anaranKandida}".\nHampitaina amin'ny ekipan'ny fanamarinam-baovao sy ireo loharano ofisialy (CENI/HCC/MALINA).`);
+		}
+	};
+
+</script>
+  <script src="data_vaovao.js">
+	// Fangatahana porofo sy fanazavana fanampiny
+	window.mangatakaPorofo = function(anaranKandida) {
+		const fanontaniana = prompt(`Mangataka fanazavana fanampiny na porofo momba an'i "${anaranKandida}".\nInona ny tarehimarika na fanambarana tianao hamarinina?`);
+		if (fanontaniana && fanontaniana.trim() !== "") {
+			alert(`Misaotra anao! Voaray ny fangatahanao momba an'i "${anaranKandida}".\nHampitaina amin'ny ekipan'ny fanamarinam-baovao sy ireo loharano ofisialy (CENI/HCC/MALINA).`);
+		}
+	};
+
+</script>
+  <script src="data_bennytanana.js">
+	// Fangatahana porofo sy fanazavana fanampiny
+	window.mangatakaPorofo = function(anaranKandida) {
+		const fanontaniana = prompt(`Mangataka fanazavana fanampiny na porofo momba an'i "${anaranKandida}".\nInona ny tarehimarika na fanambarana tianao hamarinina?`);
+		if (fanontaniana && fanontaniana.trim() !== "") {
+			alert(`Misaotra anao! Voaray ny fangatahanao momba an'i "${anaranKandida}".\nHampitaina amin'ny ekipan'ny fanamarinam-baovao sy ireo loharano ofisialy (CENI/HCC/MALINA).`);
+		}
+	};
+
+</script>
+  <script src="data_solombavambahoaka.js">
+	// Fangatahana porofo sy fanazavana fanampiny
+	window.mangatakaPorofo = function(anaranKandida) {
+		const fanontaniana = prompt(`Mangataka fanazavana fanampiny na porofo momba an'i "${anaranKandida}".\nInona ny tarehimarika na fanambarana tianao hamarinina?`);
+		if (fanontaniana && fanontaniana.trim() !== "") {
+			alert(`Misaotra anao! Voaray ny fangatahanao momba an'i "${anaranKandida}".\nHampitaina amin'ny ekipan'ny fanamarinam-baovao sy ireo loharano ofisialy (CENI/HCC/MALINA).`);
+		}
+	};
+
+</script>
 
   <!-- SCRIPT MITANTANA NY PEJY -->
   <script>
@@ -324,6 +369,36 @@
             ${fampanantenanaHTML}
           </div>
         </div>
+
+        <!-- ROHY OFISIALY SY FANGATAHANA POROFO (DEMANDE DE JUSTIFICATION) -->
+        <div class="bg-white border border-amber-200/80 rounded-xl p-4 shadow-sm space-y-3">
+          <div class="border-b border-gray-100 pb-2">
+            <h3 class="text-xs font-black text-[#934713] uppercase tracking-wide">Fanamarinam-baovao sy Rohy Ofisialy</h3>
+            <p class="text-[10px] text-gray-500">Angona voamarina miorina amin'ny fenitra ODD sy ny lalàm-panorenana.</p>
+          </div>
+
+          <div class="space-y-1.5 text-[11px]">
+            <a href="https://www.ceni-madagascar.mg" target="_blank" class="flex items-center justify-between p-2 bg-gray-50 hover:bg-amber-50/50 rounded-xl border border-gray-200 transition">
+              <span class="font-bold text-gray-800">🏛️ CENI (Tahirin-kevitra ofisialy)</span>
+              <span class="text-blue-600 font-bold">&rarr;</span>
+            </a>
+            <a href="https://hcc.gov.mg" target="_blank" class="flex items-center justify-between p-2 bg-gray-50 hover:bg-amber-50/50 rounded-xl border border-gray-200 transition">
+              <span class="font-bold text-gray-800">⚖️ HCC (Fitsarana Avo)</span>
+              <span class="text-blue-600 font-bold">&rarr;</span>
+            </a>
+            <a href="#" target="_blank" class="flex items-center justify-between p-2 bg-gray-50 hover:bg-amber-50/50 rounded-xl border border-gray-200 transition">
+              <span class="font-bold text-gray-800">🔍 Malina / Aramaso (Fact-Checking)</span>
+              <span class="text-blue-600 font-bold">&rarr;</span>
+            </a>
+          </div>
+
+          <div class="pt-1">
+            <button onclick="mangatakaPorofo(kandida.anarana + ' ' + kandida.fanampin_anarana)" class="w-full bg-[#1E6091] hover:bg-[#15466d] text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm transition flex items-center justify-center space-x-2">
+              <span>📝</span>
+              <span>Mangataka Porofo / Demande de justification</span>
+            </button>
+          </div>
+        </div>
       `;
 
       // 7. ALGORITHME FIKAROHANA FANONTANIANA FENO
@@ -359,6 +434,15 @@
         whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent('Miarahaba MALAGASY.MG, mba maniry hanamarina ity fanontaniana ity momba an\'i ' + kandida.anarana + ' aho: « ' + fanontaniana + ' »')}`;
       };
     }
-  </script>
+  
+	// Fangatahana porofo sy fanazavana fanampiny
+	window.mangatakaPorofo = function(anaranKandida) {
+		const fanontaniana = prompt(`Mangataka fanazavana fanampiny na porofo momba an'i "${anaranKandida}".\nInona ny tarehimarika na fanambarana tianao hamarinina?`);
+		if (fanontaniana && fanontaniana.trim() !== "") {
+			alert(`Misaotra anao! Voaray ny fangatahanao momba an'i "${anaranKandida}".\nHampitaina amin'ny ekipan'ny fanamarinam-baovao sy ireo loharano ofisialy (CENI/HCC/MALINA).`);
+		}
+	};
+
+</script>
 </body>
 </html>
